@@ -1,4 +1,4 @@
-name: Self-Hosted Runner Test
+name: Self-Hosted Runner Workflow
 
 on:
   push:
@@ -6,14 +6,13 @@ on:
       - main
 
 jobs:
-  test-runner:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  build:
+    runs-on: self-hosted  # This tells GitHub Actions to use your self-hosted runner
 
-      - name: Print Runner Info
-        run: |
-          echo "This job is running on a self-hosted runner!"
-          uname -a
-          whoami
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Run tests
+      run: |
+        # Your build/test commands go here
+        echo "Running tests on self-hosted runner"
